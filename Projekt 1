@@ -1,0 +1,60 @@
+using System;
+namespace Calculator
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string input = String.Empty;
+            string firstNumber;
+            string operation;
+            string secondNumber;
+            string restWithoutFirstNumber;
+            string restWithoutOperation;
+            double fromFirstNumber;
+            double fromSecondNumber;
+            double result = 0;
+
+            while (input.ToLower() != "n")
+            {
+                Console.WriteLine("Provide a calculation in this schema:");
+                Console.WriteLine("number operation number");
+                input = Console.ReadLine();
+                firstNumber = input.Substring(0, input.IndexOf(' '));
+                restWithoutFirstNumber = input.Substring(input.IndexOf(' ') + 1);
+                operation = restWithoutFirstNumber.Substring(0, restWithoutFirstNumber.IndexOf(' '));
+                restWithoutOperation = restWithoutFirstNumber.Substring(restWithoutFirstNumber.IndexOf(' ') + 1);
+                secondNumber = restWithoutOperation.Trim();
+                fromFirstNumber = double.Parse(firstNumber);
+                fromSecondNumber = double.Parse(secondNumber);
+
+                switch (operation)
+                {
+                    case "+":
+                        result = fromFirstNumber + fromSecondNumber;
+                        break;
+
+                    case "-":
+                        result = fromFirstNumber - fromSecondNumber;
+                        break;
+
+                    case "*":
+                        result = fromFirstNumber * fromSecondNumber;
+                        break;
+
+                    case "/":
+                        result = fromFirstNumber / fromSecondNumber;
+                        break;
+
+                    default:
+
+                        break;
+                }
+                Console.WriteLine(firstNumber + " " + operation + " " + secondNumber + " = " + result.ToString());
+                Console.WriteLine("Continue? [Y/N]");
+                input = Console.ReadLine();
+                Console.Clear();
+            }
+        }
+    }
+}
